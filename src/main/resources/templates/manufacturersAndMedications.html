@@ -60,7 +60,7 @@
                 <td th:text="${i.name}"></td>
                 <td th:text="${i.address}"></td>
                 <td>
-                    <a type="button" class="btn btn-success"><i class="fas fa-edit"></i>Редактировать</a>
+                    <a th:href="@{/updateManufacturer/{id}(id=${i.id})}" type="button" class="btn btn-success"><i class="fas fa-edit"></i>Редактировать</a>
                     <a th:href="@{/deleteManufacturer/{id}(id=${i.id})}" type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i>Удалить</a>
                 </td>
             </tr>

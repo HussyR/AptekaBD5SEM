@@ -12,5 +12,7 @@ public interface ManufacturerService {
     Manufacturer getManufacturerByName(String name);
     //    Employee getEmployeeById(Long id);
     List<Manufacturer> getAllManufacturers();
+    void update(ManufacturerDto manufacturerDto);
+    Manufacturer getManufacturerById(Long id);
     void delete(Long id);
 }

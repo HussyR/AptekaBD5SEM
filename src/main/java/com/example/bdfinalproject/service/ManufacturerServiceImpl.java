@@ -36,6 +36,17 @@ public class ManufacturerServiceImpl implements ManufacturerService {
     }
 
     @Override
+    public void update(ManufacturerDto manufacturerDto) {
+        Manufacturer manufacturer = new Manufacturer(manufacturerDto.getName(), manufacturerDto.getAddress());
+        manufacturer.setId(manufacturerDto.getId());
+        manufacturerRepository.save(manufacturer);
+    }
+
+    public Manufacturer getManufacturerById(Long id) {
+        return manufacturerRepository.findManufacturerById(id);
+    }
+
+    @Override
     public void delete(Long id) {
         manufacturerRepository.deleteById(id);
     }

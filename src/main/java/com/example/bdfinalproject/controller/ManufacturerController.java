@@ -1,7 +1,9 @@
 package com.example.bdfinalproject.controller;
 
+import com.example.bdfinalproject.dto.EmployeeDto;
 import com.example.bdfinalproject.dto.ManufacturerDto;
 import com.example.bdfinalproject.dto.MedicationDto;
+import com.example.bdfinalproject.model.Employee;
 import com.example.bdfinalproject.model.Manufacturer;
 import com.example.bdfinalproject.model.Medication;
 import com.example.bdfinalproject.service.EmployeeService;
@@ -75,6 +77,20 @@ public class ManufacturerController {
     @GetMapping("/deleteMedication/{id}")
     public String deleteMedication(@PathVariable(value = "id") long id) {
         medicationService.delete(id);
+        return "redirect:/manufacturersAndMedications";
+    }
+
+    @GetMapping("/updateManufacturer/{id}")
+    public String showFormForUpdate(@PathVariable(value = "id") long id, Model model) {
+        Manufacturer manufacturer = manufacturerService.getManufacturerById(id);
+        ManufacturerDto manufacturerDto = new ManufacturerDto(id, manufacturer.getName(), manufacturer.getAddress());
+        model.addAttribute("manufacturer", manufacturerDto);
+        return "updateManufacturer";
+    }
+
+    @PostMapping("/updatedManufacturer")
+    public String updateTable(@ModelAttribute("table") ManufacturerDto manufacturerDto) {
+        manufacturerService.update(manufacturerDto);
         return "redirect:/manufacturersAndMedications";
     }
 
